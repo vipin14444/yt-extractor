@@ -1,0 +1,74 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'maven-publish'
+    id 'kotlin-parcelize'
+}
+
+android {
+    namespace 'com.raka.ytube_extractor'
+    compileSdk 33
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 33
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    implementation 'com.hannesdorfmann.parcelableplease:annotation:1.0.2'
+    annotationProcessor 'com.hannesdorfmann.parcelableplease:processor:1.0.2'
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.2'
+
+    // Gson
+    implementation 'com.google.code.gson:gson:2.8.9'
+
+    // Regex with named groups for pre Java 7
+    implementation 'com.github.tony19:named-regexp:0.2.5'
+
+    // JS interpreter (versions newer than 1.7.10 requires API 26)
+    implementation 'org.mozilla:rhino:1.7.10'
+
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.vipin14444'
+                artifactId = 'yt-extractor'
+                version = '1.0'
+            }
+        }
+    }
+}

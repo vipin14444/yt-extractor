@@ -1,0 +1,1 @@
+-keep enum com.raka.ytube_extractor.models.** {*;}
