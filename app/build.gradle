@@ -42,5 +42,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 //    implementation 'com.github.rakeshrajput537:yt-extractor:2.0.3'
+//    implementation 'com.github.vipin14444:yt-extractor:1.0'
     implementation project(':ytube-extractor')
 }
